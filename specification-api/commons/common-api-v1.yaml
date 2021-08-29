@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: Esquemas comunes para APIs
+  contact:
+    name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
+    email: mesadepartesue011@mpfn.gob.pe
+  version: "1.0.0"
+components:
+  schemas:
+    BasicPageResponse:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          description: Retorna el numero total de paginas.
+        totalElements:
+          type: integer
+          description: Retorna el numero total de elementos.
+        number:
+          type: integer
+          description: Retorna el numero actual de pagina.
+        size:
+          type: integer
+          description: Retorna el tamaño de elementos de una pagina.
+    PageRequest:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+    ResponseMessage:
+      type: object
+      properties:
+        message:
+          type: string
+        data:
+          type: object
+    ResponseErrorMessage:
+      type: object
+      properties:
+        code:
+          type: string
+        errorType:
+          type: string
+          enum:
+          - DATA_ERROR
+          - RESOURCE_ERROR
+          - REPOSITORY_ERROR
+          - INTERNAL_ERROR
+          - AUTHENTICATION_ERROR
+          - AUTHORIZATION_ERROR
+        component:
+          description: 'Nombre del servicio web por ejemplo spring.application.name del bootstrap.yaml'
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseErrorMessage'
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+  responses:
+    '400':
+      description: 'Errores de cliente'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorMessage'
+    '401':
+      description: 'No autorizado'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorMessage'
+    '500':
+      description: 'Errores de servidor'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorMessage'

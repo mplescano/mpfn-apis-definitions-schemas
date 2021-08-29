@@ -1,0 +1,188 @@
+openapi: 3.0.1
+info:
+  title: Microservicio de Entidades
+  description: Microservicio para la obtención de información de entidades como son personas naturales, juridicas, etc.
+  contact:
+    name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
+    email: mesadepartesue011@mpfn.gob.pe
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: "1.0"
+servers:
+- url: http://locahost/gestion-tic/tercero/entidades/v1
+tags:
+- name: api-persona
+  description: Apis relacionadas a personas
+- name: api-juridica
+  description: Apis relacionadas a juridicos
+- name: api-entidad
+  description: Apis relacionadas a juridicos
+paths:
+  /entidad:
+    get:
+      tags:
+      - api-entidad
+      summary: Obtiene un listado de entidades
+      operationId: getEntidades
+      parameters:
+      - name: entidadRequest
+        in: query
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/EntidadRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntidadResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '401':
+          $ref: 'common-api-v1.yaml#/components/responses/401'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+      security:
+        - bearerAuth: []
+  /entidad/{tipoDoc}/{numDoc}:
+    get:
+      tags:
+      - api-entidad
+      summary: Obtiene datos de una entidad ya sea reniec, sunat o migraciones
+      operationId: getEntidad
+      parameters:
+      - name: tipoDoc
+        in: path
+        required: true
+        schema:
+          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+      - name: numDoc
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: esMenor
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntidadResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '401':
+          $ref: 'common-api-v1.yaml#/components/responses/401'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    PersonaNatural:
+      type: object
+      properties:
+        nombres:
+          type: string
+        apellidoPaterno:
+          type: string
+        apellidoMaterno:
+          type: string
+        direccionResidencia:
+          type: string
+        codUbigeoResidencia:
+          type: string
+        descUbigeoResidencia:
+          type: string
+        codUbigeoNacimiento:
+          type: string
+        descUbigeoNacimiento:
+          type: string
+        fechaNacimiento:
+          type: string
+          format: date
+        esMenor:
+          type: boolean
+        codPaisNacimiento:
+          type: string
+        descPaisNacimiento:
+          type: string
+        codPaisResidencia:
+          type: string
+        descPaisResidencia:
+          type: string
+        codGenero:
+          type: string
+        descGenero:
+          type: string
+        codEstadoCivil:
+          type: string
+        descEstadoCivil:
+          type: string
+        codGradoInstruccion:
+          type: string
+        descGradoInstruccion:
+          type: string
+    PersonaJuridica:
+      type: object
+      properties:
+        razonSocial:
+          type: string
+        domicilioFiscal:
+          type: string
+        codTipoContribuyente:
+          type: string
+        descTipoContribuyente:
+          type: string
+        direccion:
+          type: string
+        codUbigeo:
+          type: string
+        descUbigeo:
+          type: string
+    EntidadRequest:
+      type: object
+      properties:
+        tipoDoc:
+          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+        numDoc:
+          description: 'Número de documento completo'
+          type: string
+        esMenor:
+          description: 'Flag de si es menor de edad o no'
+          type: boolean
+        nombres:
+          description: 'Para busqueda de persona natural'
+          type: string
+        apPaterno:
+          description: 'Para busqueda de persona natural'
+          type: string
+        apMaterno:
+          description: 'Para busqueda de persona natural'
+          type: string
+        razonSocial:
+          description: 'Para busqueda de persona juridica'
+          type: string
+    EntidadResponse:
+      type: object
+      properties:
+        personaNatural:
+          $ref: '#/components/schemas/PersonaNatural'
+        personaJuridica:
+          $ref: '#/components/schemas/PersonaJuridica'
+        nombreCompleto:
+          type: string
+        tipoDocumento:
+          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+        numeroDocumento:
+          type: string

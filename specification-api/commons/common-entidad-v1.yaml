@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: Esquemas comunes para Entidades
+  contact:
+    name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
+    email: mesadepartesue011@mpfn.gob.pe
+  version: "1.0"
+components:
+  schemas:
+    TipoDocIdentidad:
+      description: |
+        DNI, Carnet de extranjeria, ruc, carnet ptp
+        revisar https://sel.migraciones.gob.pe/servmig-valreg/VerificarPAS
+        https://sel.migraciones.gob.pe/webcarnetptp/VerificarCPTP
+        https://apps.rree.gob.pe/portal/SCT/visasconsulta.nsf/Consulta.xsp
+        https://sel.migraciones.gob.pe/servmig-valreg/VerificarCE
+        https://sistemasdgc.rree.gob.pe/carext_consulta_webapp/
+        
+        * `CEX`: Carnet de Extranjería - NO IMPLEMENTADO
+        * `304`: Carnet de Identidad - NO IMPLEMENTADO
+        * `307`: Cédula - NO IMPLEMENTADO
+        * `DNI`: DNI
+        * `302`: Libreta Electoral - DEPRECIADO
+        * `306`: Libreta Militar - DEPRECIADO
+        * `303`: Partida de Nacimiento - NO IMPLEMENTADO
+        * `PAS`: Pasaporte - NO IMPLEMENTADO
+        * `PTP`: Permiso Temporal de Permanencia - NO IMPLEMENTADO
+        * `RUC`: RUC
+      type: string
+      enum:
+        - DNI
+        - RUC
+        - CEX
+        - PAS
+        - PTP

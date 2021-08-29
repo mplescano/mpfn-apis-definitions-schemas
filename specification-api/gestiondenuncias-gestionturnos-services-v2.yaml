@@ -1,0 +1,677 @@
+openapi: 3.0.1
+info:
+  title: Microservicio de Fiscalia de Turno
+  description: Microservicio para la gestion de denuncias en la fiscalia de turnos.
+  contact:
+    name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
+    email: mesadepartesue011@mpfn.gob.pe
+  version: "2.0"
+servers:
+- url: http://locahost/gestion-denuncias/gestion-turnos/v1
+tags:
+- name: api-llamadas
+  description: Apis relacionadas a llamadas
+- name: api-partes
+  description: Apis relacionadas a sujeto procesal
+- name: api-documentos
+  description: Apis relacionadas a documentos
+paths:
+  /llamada:
+    get:
+      tags:
+      - api-llamadas
+      summary: Obtiene un listado paginado de llamadas
+      operationId: getListLlamadas
+      parameters:
+      - name: llamadaSearchRequest
+        in: query
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/LlamadaSearchRequest'
+      - name: pageRequest
+        in: query
+        style: form
+        explode: true
+        schema:
+          $ref: 'common-api-v1.yaml#/components/schemas/PageRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageLlamadaResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+    post:
+      tags:
+      - api-llamadas
+      summary: Graba los datos de una llamada
+      operationId: saveLlamada
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LlamadaRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+  /llamada/{idLlamada}:
+    get:
+      tags:
+      - api-llamadas
+      summary: Obtiene datos de una llamada
+      operationId: getOneLlamadaById
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemLlamadaResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+    put:
+      tags:
+      - api-llamadas
+      summary: Actualiza datos de una llamada
+      operationId: updateLlamada
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LlamadaRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+    delete:
+      tags:
+      - api-llamadas
+      summary: Borra datos de una llamada
+      operationId: deleteLlamadaById
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: motivo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+         
+  /llamada/{idLlamada}/homologacion:
+    post:
+      tags:
+      - api-llamadas
+      summary: Sincroniza una llamada
+      operationId: homologarLlamadaById
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+  /llamada/{idLlamada}/parte:
+    get:
+      tags:
+      - api-partes
+      summary: Lista los sujetos procesales de una llamada
+      operationId: getListPartes
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idTipoParte
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListParteResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+    post:
+      tags:
+      - api-partes
+      summary: Guarda un sujeto procesales de una llamada
+      operationId: saveParte
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParteRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+  /llamada/{idLlamada}/parte/{idParte}:
+    get:
+      tags:
+      - api-partes
+      summary: Obtiene un sujeto procesales de una llamada
+      operationId: getOneParte
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idParte
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemParteResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+    put:
+      tags:
+      - api-partes
+      summary: Actualiza un sujeto procesales de una llamada
+      operationId: updateParte
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idParte
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParteRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+    delete:
+      tags:
+      - api-partes
+      summary: Borra un sujeto procesales de una llamada
+      operationId: deleteParte
+      parameters:
+      - name: idLlamada
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idParte
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: motivo
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+
+  /documento:
+    get:
+      tags:
+      - api-documentos
+      summary: Obtiene listado de documentos
+      operationId: getListDocumentos
+      parameters:
+      - name: idLlamada
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idParte
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDocumentoResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+    post:
+      tags:
+      - api-documentos
+      summary: Guarda un listado de documentos
+      operationId: saveDocumentos
+      parameters:
+      - name: idLlamada
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idParte
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListDocumentoRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+          
+  /documento/{idDocumento}:
+    delete:
+      tags:
+      - api-documentos
+      summary: Borra un documento
+      operationId: deleteDocumento
+      parameters:
+      - name: idDocumento
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+
+components:
+  schemas:
+    ListDocumentoRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/DocumentoRequest'
+    DocumentoRequest:
+      type: object
+      properties:
+        idElemento:
+          type: integer
+          format: int64
+        nomArchivo:
+          type: string
+        ruta:
+          type: string
+        idTipoActa:
+          type: integer
+          format: int64
+          
+    ListDocumentoResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ItemDocumentoResponse'
+    ItemDocumentoResponse:
+      type: object
+      properties:
+        idDocumento:
+          type: integer
+          format: int64
+        idLlamada:
+          type: integer
+          format: int64
+        idParte:
+          type: integer
+          format: int64
+        ruta:
+          type: string
+        idTipoActa:
+          type: integer
+          format: int64
+      
+    ParteRequest:
+      type: object
+      properties:
+        idTipoSujetoProcesal:
+          type: integer
+          format: int64
+        idTipoPersona:
+          type: integer
+          format: int64
+        idTipoDocumento:
+          type: integer
+          format: int64
+        numDocumento:
+          type: string
+        nombrePersona:
+          type: string
+        apellidoPaterno:
+          type: string
+        apellidoMaterno:
+          type: string
+        nombreComercial:
+          type: string
+        alias:
+          type: string
+          
+    ListParteResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ItemParteResponse'
+    ItemParteResponse:
+      type: object
+      properties:
+        idParte:
+          type: integer
+          format: int64
+        idLlamada:
+          type: integer
+          format: int64
+        idTipoDocumento:
+          type: integer
+          format: int64
+        nomTipoDocumento:
+          type: string
+        idTipoPersona:
+          type: integer
+          format: int64
+        nomTipoPersona:
+          type: string
+        numDocumento:
+          type: string
+        nombrePersona:
+          type: string
+        apellidoPaterno:
+          type: string
+        apellidoMaterno:
+          type: string
+        nombreComercial:
+          type: string
+        idTipoSujetoProcesal:
+          type: integer
+          format: int64
+        nomTipoSujetoProcesal:
+          type: string
+        alias:
+          type: string
+        
+    PageLlamadaResponse:
+      allOf:
+        - $ref: 'common-api-v1.yaml#/components/schemas/BasicPageResponse'
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: '#/components/schemas/ItemLlamadaResponse'
+    ItemLlamadaResponse:
+      type: object
+      properties:
+        idLlamada:
+          type: integer
+          format: int64
+        idTipoRegistro:
+          type: integer
+          format: int64
+        nomTipoRegistro:
+          type: string
+        fecLlamada:
+          type: string
+          format: date-time
+        efectivoPolicial:
+          $ref: '#/components/schemas/EfectivoPolicial'
+        unidadPolicial:
+          $ref: '#/components/schemas/UnidadPolicial'
+        numDelitos:
+          type: integer
+        numPartes:
+          type: integer
+        fiscalAsignado:
+          $ref: '#/components/schemas/Fiscal'
+        
+    EfectivoPolicial:
+      type: object
+      properties:
+        dni:
+          type: string
+          pattern: '[\d]{8}'
+        nombres:
+          type: string
+          maxLength: 60
+        apellidoPaterno:
+          type: string
+          maxLength: 60
+        apellidoMaterno:
+          type: string
+          maxLength: 60
+        celular:
+          type: string
+          maxLength: 20
+        correo:
+          type: string
+          maxLength: 20
+    UnidadPolicial:
+      type: object
+      properties:
+        idUnidadPolicial:
+          type: integer
+          format: int64
+        nomUnidadPolicial:
+          type: string
+          maxLength: 100
+        telefono:
+          type: string
+          maxLength: 20
+    LlamadaSearchRequest:
+      type: object
+      properties:
+        idTipoRegistro:
+          type: integer
+          format: int64
+        idUnidadPolicial:
+          type: integer
+          format: int64
+        codCaso:
+          type: string
+        fecDesde:
+          type: string
+          format: date
+        fecHasta:
+          type: string
+          format: date
+    LlamadaRequest:
+      type: object
+      properties:
+        idLlamada:
+          type: integer
+          format: int64
+        codCaso:
+          type: string
+          minLength: 20
+        fiscalia:
+          type: object
+          properties:
+            codDistritoFiscal:
+              type: string
+            nomDistritoFiscal:
+              type: string
+            codFiscalia:
+              type: string
+            nomFiscalia:
+              type: string
+            codDespacho:
+              type: string
+            nomDespacho:
+              type: string
+        fiscal:
+          $ref: '#/components/schemas/Fiscal'
+        efectivoPolicial:
+          $ref: '#/components/schemas/EfectivoPolicial'
+        unidadPolicial:
+          $ref: '#/components/schemas/UnidadPolicial'
+        idTipoHechos:
+          type: integer
+          format: int64
+        idTipoLugar:
+          type: integer
+          format: int64
+        fecLlamada:
+          type: string
+          format: date-time
+        fecDetencion:
+          type: string
+          format: date-time
+        direccion:
+          type: string
+          maxLength: 120
+        generaCaso:
+          type: boolean
+        observacion:
+          type: string
+          maxLength: 200
+    Fiscal:
+      type: object
+      properties:
+        dni:
+          type: string
+          pattern: '\d{8}'
+        nombres:
+          type: string
+          maxLength: 120

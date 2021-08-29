@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: Microservicio de Detenidos
+  description: Microservicio para la gestion de detenidos en la fiscalia de turnos.
+  contact:
+    name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
+    email: mesadepartesue011@mpfn.gob.pe
+  version: "3.0"
+servers:
+- url: http://locahost/gestion-denuncias/gestion-detenidos/v1
+tags:
+- name: api-detenidos
+  description: Apis relacionadas a detenidos
+paths:
+  /ficha-detenido:
+    get:
+      tags:
+      - api-ficha-detenidos
+      summary: Obtiene un listado acotado de detenidos registrados
+      operationId: getListFichaDetenidos
+      parameters:
+      - name: codTipoDocumento
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DNI
+          - CEX
+      - name: numDocumento
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFichaDetenidoResponse'
+        '400':
+          $ref: 'common-api-v1.yaml#/components/responses/400'
+        '500':
+          $ref: 'common-api-v1.yaml#/components/responses/500'
+
+components:
+  schemas:
+    ListFichaDetenidoResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ItemFichaDetenidoResponse'
+    ItemFichaDetenidoResponse:
+      type: object
+      properties:
+        idTipoFicha:
+          type: integer
+          format: int64
+        codTipoDocumento:
+          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+          
