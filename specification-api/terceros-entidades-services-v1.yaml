@@ -184,3 +184,8 @@ components:
           type: string
         documentoIdentidad:
           $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/DocumentoIdentidad'
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes

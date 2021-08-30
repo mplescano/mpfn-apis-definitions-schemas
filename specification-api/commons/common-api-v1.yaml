@@ -61,11 +61,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResponseErrorMessage'
-  securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
   responses:
     '400':
       description: 'Errores de cliente'
