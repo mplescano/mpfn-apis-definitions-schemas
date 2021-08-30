@@ -7,6 +7,21 @@ info:
   version: "1.0"
 components:
   schemas:
+    DocumentoIdentidad:
+      type: object
+      properties:
+        tipo:
+          $ref: '#/components/schemas/TipoDocIdentidad'
+        numero:
+          type: string
+    TipoGenero:
+      description: |
+        * `H`: HOMBRE
+        * `M`: MUJER
+      type: string
+      enum:
+      - H
+      - M
     TipoDocIdentidad:
       description: |
         DNI, Carnet de extranjeria, ruc, carnet ptp

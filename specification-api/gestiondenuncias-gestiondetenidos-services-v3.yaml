@@ -21,17 +21,20 @@ paths:
       parameters:
       - name: codTipoDocumento
         in: query
-        required: true
+        required: false
         schema:
-          type: string
-          enum:
-          - DNI
-          - CEX
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
       - name: numDocumento
         in: query
-        required: true
+        required: false
         schema:
           type: string
+      - name: idFichaDetenido
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
       responses:
         '200':
           description: OK
@@ -56,6 +59,9 @@ components:
         idTipoFicha:
           type: integer
           format: int64
-        codTipoDocumento:
-          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
+        docIdentidad:
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/DocumentoIdentidad'
+
+
+         
           

@@ -182,7 +182,5 @@ components:
           $ref: '#/components/schemas/PersonaJuridica'
         nombreCompleto:
           type: string
-        tipoDocumento:
-          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
-        numeroDocumento:
-          type: string
+        documentoIdentidad:
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/DocumentoIdentidad'
