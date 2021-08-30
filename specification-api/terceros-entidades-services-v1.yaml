@@ -42,11 +42,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/EntidadResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '401':
-          $ref: 'common-api-v1.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/401'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
       security:
         - bearerAuth: []
   /entidad/{tipoDoc}/{numDoc}:
@@ -60,7 +60,7 @@ paths:
         in: path
         required: true
         schema:
-          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
       - name: numDoc
         in: path
         required: true
@@ -80,11 +80,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/EntidadResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '401':
-          $ref: 'common-api-v1.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/401'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
       security:
         - bearerAuth: []
 components:
@@ -154,7 +154,7 @@ components:
       type: object
       properties:
         tipoDoc:
-          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
         numDoc:
           description: 'Número de documento completo'
           type: string
@@ -183,6 +183,6 @@ components:
         nombreCompleto:
           type: string
         tipoDocumento:
-          $ref: 'common-entidad.yaml#/components/schemas/TipoDocIdentidad'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-entidad-v1.yaml#/components/schemas/TipoDocIdentidad'
         numeroDocumento:
           type: string

@@ -34,7 +34,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: 'common-api-v1.yaml#/components/schemas/PageRequest'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/PageRequest'
       responses:
         '200':
           description: OK
@@ -43,9 +43,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PageLlamadaResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
     post:
       tags:
       - api-llamadas
@@ -62,11 +62,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
   /llamada/{idLlamada}:
     get:
       tags:
@@ -88,9 +88,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ItemLlamadaResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
     put:
       tags:
@@ -115,11 +115,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
     delete:
       tags:
@@ -144,11 +144,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
          
   /llamada/{idLlamada}/homologacion:
     post:
@@ -169,11 +169,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
   /llamada/{idLlamada}/parte:
     get:
@@ -202,9 +202,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListParteResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
     post:
       tags:
       - api-partes
@@ -228,11 +228,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
   /llamada/{idLlamada}/parte/{idParte}:
     get:
@@ -261,9 +261,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ItemParteResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
     put:
       tags:
       - api-partes
@@ -293,11 +293,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
     delete:
       tags:
       - api-partes
@@ -327,11 +327,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
 
   /documento:
     get:
@@ -360,9 +360,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListDocumentoResponse'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
     post:
       tags:
@@ -393,11 +393,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
           
   /documento/{idDocumento}:
     delete:
@@ -418,11 +418,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'common-api-v1.yaml#/components/schemas/ResponseMessage'
+                $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/ResponseMessage'
         '400':
-          $ref: 'common-api-v1.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/400'
         '500':
-          $ref: 'common-api-v1.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/responses/500'
 
 components:
   schemas:
@@ -534,7 +534,7 @@ components:
         
     PageLlamadaResponse:
       allOf:
-        - $ref: 'common-api-v1.yaml#/components/schemas/BasicPageResponse'
+        - $ref: 'https://raw.githubusercontent.com/mplescano/mpfn-apis-definitions-schemas/main/specification-api/commons/common-api-v1.yaml#/components/schemas/BasicPageResponse'
         - type: object
           properties:
             content:
