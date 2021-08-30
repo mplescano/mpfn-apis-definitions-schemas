@@ -1,11 +1,11 @@
 openapi: 3.0.1
 info:
-  title: Microservicio de Fiscalia de Turno
-  description: Microservicio para la gestion de denuncias en la fiscalia de turnos.
+  title: Microservicio de Gestión de Turnos
+  description: Microservicio para la gestion de llamadas en la fiscalia de turnos.
   contact:
     name: MINISTERIO PUBLICO DE FISCALÍA DE LA NACIÓN
     email: mesadepartesue011@mpfn.gob.pe
-  version: "2.0"
+  version: "3.0"
 servers:
 - url: http://locahost/gestion-denuncias/gestion-turnos/v1
 tags:
